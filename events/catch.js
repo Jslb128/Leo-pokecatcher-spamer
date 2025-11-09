@@ -147,15 +147,11 @@ module.exports = (client) => {
 
     // --- AI MODE (Lenda bot output) ---
     if (catchMode === "lenda") {
-      if (
-        message.author.bot &&
-        message.content.match(/^[A-Za-z0-9 .'-]+: \d+(\.\d+)?%$/)
+      if (message.author.bot && message.content.match(/^[A-Za-z0-9 .'-]+: \d+(\.\d+)?%$/)
       ) {
         const [pokemonName] = message.content.split(":");
         try {
-          await message.channel.send(
-            `<@716390085896962058> c ${pokemonName.trim()}`,
-          );
+          await message.channel.send("<@716390085896962058> c" + pokemonName.trim());
         } catch {
           console.log(chalk.red("AI catch attempt failed"));
         }
@@ -172,7 +168,6 @@ module.exports = (client) => {
         const pokemon = await solveHint(message);
         if (pokemon[0]) {
         	await message.channel.send("<@716390085896962058> c " + pokemon[0]);
-			await message.channel.send(getImage(pokemonName));
         }
       } else if (message?.content.includes("That is the wrong pokémon!")){
 			setTimeout(function(){
