@@ -37,5 +37,5 @@ cd Leo-pokecatcher
 
 ## How to run
 
-- npm install
+- npm install debug node-cron
 - node index.js
