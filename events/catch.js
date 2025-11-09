@@ -147,8 +147,7 @@ module.exports = (client) => {
 
     // --- AI MODE (Lenda bot output) ---
     if (catchMode === "lenda") {
-      if (message.author.bot && message.content.match(/^[A-Za-z0-9 .'-]+: \d+(\.\d+)?%$/)
-      ) {
+      if (message.author.bot && message.content.match(/^[A-Za-z0-9 .'-]+: \d+(\.\d+)?%$/)) {
         const [pokemonName] = message.content.split(":");
         try {
           await message.channel.send("<@716390085896962058> c" + pokemonName.trim());
