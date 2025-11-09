@@ -174,7 +174,9 @@ module.exports = (client) => {
           await message.channel.send("<@716390085896962058> c " + pokemon[0]);
         }
       } else if (message?.content.includes("That is the wrong pokémon!")){
-	      message.channel.send("<@716390085896962058> h");
+			setTimeout(function(){
+				message.channel.send("<@716390085896962058> h");
+		 	}, 4000);
       }
     }
 
