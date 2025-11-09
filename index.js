@@ -3,7 +3,7 @@ const { Client } = require("discord.js-selfbot-v13");
 const fs = require("fs");
 const chalk = require("chalk");
 const config = require("./config.js");
-
+const keep_alive = require("./keep_alive.js");
 // Load tokens
 let data = process.env.TOKENS || fs.readFileSync("./tokens.txt", "utf-8");
 if (!data) throw new Error("Unable to find your tokens.");
