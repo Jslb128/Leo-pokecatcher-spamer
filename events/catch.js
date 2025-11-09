@@ -5,6 +5,7 @@ const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
 const config = require("../config.js");
+const cron = require('node-cron');
 
 const { catchMode, genderEmojis, webhookUrls, rarityColors } = config;
 
@@ -164,12 +165,16 @@ module.exports = (client) => {
     // --- HINT MODE (Pokétwo) ---
     if (catchMode === "hint" && message?.author.id === "716390085896962058") {
       if (message.embeds[0]?.title?.includes("wild pokémon has appeared")) {
-        message.channel.send("<@716390085896962058> h");
+	setTimeout(function(){
+		message.channel.send("<@716390085896962058> h");
+	 }, 4000);
       } else if (message?.content.includes("The pokémon is")) {
         const pokemon = await solveHint(message);
         if (pokemon[0]) {
           await message.channel.send("<@716390085896962058> c " + pokemon[0]);
         }
+      } else if (message?.content.includes("That is the wrong pokémon!")){
+	      message.channel.send("<@716390085896962058> h");
       }
     }
 
