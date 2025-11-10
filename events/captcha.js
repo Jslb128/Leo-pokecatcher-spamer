@@ -174,7 +174,7 @@ module.exports = (client) => {
       s.captcha.detected++;
     });
     client.captchaPaused = true;
-
+    message.channel.send("<@841738091227643914> Captcha detected!");
     console.log(
       `[${date.format(new Date(), "YYYY-MM-DD HH:mm:ss")}] ${chalk.red(client.user.username)} → CAPTCHA detected, pausing catch | @ryomen.leo`,
     );
