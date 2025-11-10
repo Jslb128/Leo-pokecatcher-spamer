@@ -166,7 +166,7 @@ module.exports = (client) => {
       } else if (message?.content.includes("The pokémon is")) {
         const pokemon = await solveHint(message);
         if (pokemon[0]) {
-        	await message.channel.send("<@716390085896962058> c " + pokemon[0]);
+        	message.channel.send("<@716390085896962058> c " + pokemon[0]);
 			setTimeout(function(){
 				checkIfWrong = await message.channel.createMessageCollector({ time: 5000 }).on("collect", async (msg) => {
 					if (msg?.content.includes("That is the wrong pokémon!")) {
