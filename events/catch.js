@@ -139,7 +139,6 @@ module.exports = (client) => {
     }
 
     if (client.captchaPaused) {
-		message.channel.send("<@841738091227643914> captcha");
       console.log(
         `[${date.format(new Date(), "YYYY-MM-DD HH:mm:ss")}] Catch paused due to captcha for ${client.user.username}`,
       );
