@@ -163,7 +163,7 @@ module.exports = (client) => {
       if (message.embeds[0]?.title?.includes("wild pokémon has appeared")) {
 	setTimeout(function(){
 		message.channel.send("<@716390085896962058> h");
-	 }, 1200);
+	 }, 500);
       } else if (message?.content.includes("The pokémon is")) {
         const pokemon = await solveHint(message);
         if (pokemon[0]) {
@@ -171,8 +171,8 @@ module.exports = (client) => {
         }
       } else if (message?.content.includes("That is the wrong pokémon!")){
 			setTimeout(function(){
-				message.channel.send("<@716390085896962058> h");
-		 	}, 10300);
+				message.channel.send("<@716390085896962058> c" + pokemon[1]);
+		 	}, 300);
       }
     }
 
