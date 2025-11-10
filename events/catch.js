@@ -168,11 +168,12 @@ module.exports = (client) => {
         const pokemon = await solveHint(message);
         if (pokemon[0]) {
         	await message.channel.send("<@716390085896962058> c " + pokemon[0]);
+			console.log(chalk.red("here " + pokemon[0] + pokemon[1]);
         }
       } else if (message?.content.includes("That is the wrong pokémon!")){
 			setTimeout(function(){
-				message.channel.send("<@716390085896962058> c" + pokemon[1]);
-		 	}, 300);
+				message.channel.send("<@716390085896962058> h");
+		 	}, 10000);
       }
     }
 
