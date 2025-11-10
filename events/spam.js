@@ -1,5 +1,9 @@
 const cron = require('node-cron');
-
+function sleep(timeInMs) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeInMs);
+  });
+}
 module.exports = (client) => {
   client.on("ready", async() => {
 
