@@ -5,7 +5,7 @@ module.exports = (client) => {
 
 		const channelId = '1436115271076024480'; // your channel ID here
 	        const channeli = await client.channels.fetch(channelId);
-	  cron.schedule('*/4 * * * * *', () => {
+	  cron.schedule('*/2 * * * * *', () => {
 		channeli.send("pick toothpick beugette");
 
   	});
