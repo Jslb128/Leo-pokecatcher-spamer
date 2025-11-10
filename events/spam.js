@@ -10,7 +10,7 @@ module.exports = (client) => {
 		const channel = await client.channels.fetch(channelId);
 		while (!client.captchaPaused){
 			await sleep(1500);
-			channel.send("pick toothpick beugette");
+			channel.send("Its Beginning To Look A Lot Like Christmas...");
 		};
 	});
 };
