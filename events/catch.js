@@ -170,10 +170,10 @@ module.exports = (client) => {
 			if (message.content.includes("That is the wrong pokémon!")){
 						
 						message.channel.send("<@716390085896962058> c " + pokemon[1]);
-			}
-		});
+			};
+		};
 	    };
-    }
+    };
       
     
 
