@@ -174,8 +174,8 @@ module.exports = (client) => {
 		});
 	    };
     }
-      }
-    }
+      
+    
 
     // --- Quest Completion Detection ---
     if (
