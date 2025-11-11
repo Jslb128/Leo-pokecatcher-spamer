@@ -167,15 +167,13 @@ module.exports = (client) => {
         const pokemon = await solveHint(message);
         if (pokemon[0]) {
         	message.channel.send("<@716390085896962058> c " + pokemon[0]);
-			setTimeout(function(){
-				checkIfWrong = message.channel.createMessageCollector({ time: 5000 }).on("collect", async (msg) => {
-					if (msg?.content.includes("That is the wrong pokémon!")) {
-						checkIfWrong.stop();
-						await msg.channel.send("<@716390085896962058> c " + pokemon[1]);
-					 }
-				});
-			}, 1000);
-        }
+			if (message.content.includes("That is the wrong pokémon!")){
+						
+						message.channel.send("<@716390085896962058> c " + pokemon[1]);
+			}
+		});
+	    };
+    }
       }
     }
 
