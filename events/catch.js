@@ -156,17 +156,6 @@ module.exports = (client) => {
         }
       }
     }
-	// extracts pokemon from message
-	function extractPoke(message) {
-			const str = typeof message === 'object' ? message.content : message;
-			if (!str.includes(":")) return [];
-
-			return str
-			.split(":")[1]
-			.split(",")
-			.map(item => item.trim())
-			.filter(item => item);
-	}
     // --- HINT MODE (Pokétwo) ---
     if (catchMode === "hint" && message?.author.id === "716390085896962058") {
       if (message.embeds[0]?.title?.includes("wild pokémon has appeared")) {
@@ -177,7 +166,7 @@ module.exports = (client) => {
         const pokemon = await solveHint(message);
 	        if (pokemon[0]) {
 	        	message.channel.send("<@716390085896962058> c " + pokemon[0]);
-			} if(pokemon[1] && message.content.includes("That is the wrong pokémon!")){
+			} if(pokemon[1]){
 				message.channel.send("<@716390085896962058> c " + pokemon[1]);
 			}
 		}
