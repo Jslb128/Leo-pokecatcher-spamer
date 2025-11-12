@@ -21,7 +21,6 @@
 
 - Node.js v18+ installed on your system.
 - A Discord account with valid tokens.
-- P2 assistant bot in your server.
 - Basic knowledge of running commands in terminal or command prompt.
 
 ---
