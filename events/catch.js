@@ -181,8 +181,7 @@ module.exports = (client) => {
 				message.channel.send("<@716390085896962058> c " + pokemon[1]);
 			}
 		}
-	    }
-    }
+	}
       
     
 
