@@ -8,7 +8,7 @@ module.exports = (client) => {
 	client.on("ready", async() => {
 		const channelId = '1436115271076024480'; // your channel ID here
 		const channel = await client.channels.fetch(channelId);
-		while (!client.captchaPaused){
+		while (true){
 			await sleep(1500);
 			channel.send("Its Beginning To Look A Lot Like Christmas...");
 		};
