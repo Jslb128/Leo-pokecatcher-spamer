@@ -83,22 +83,6 @@ function getRandomColor(palette) {
 
 module.exports = (client) => {
   client.on("messageCreate", async (message) => {
-    if (message.author.id === "716390085896962058") {
-      if (message.content.includes("Please pick a starter pokémon")) {
-        try {
-          await message.channel
-            .send("<@716390085896962058> pick charmander")
-            .catch(() => null);
-          await new Promise((resolve) => setTimeout(resolve, 10000));
-
-          await message.channel.send("<@716390085896962058> sh mewtwo");
-        } catch (err) {
-          console.error("❌ Error auto-picking starter:", err.message);
-        }
-        return; // stop here so normal catch flow doesn’t run
-      }
-    }
-
     if (
       message.components?.length > 0 &&
       message.author.id === "716390085896962058"
