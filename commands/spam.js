@@ -1,7 +1,8 @@
 // commands/spam.js
 
-const cron = require("node-cron");
+
 module.exports = {
+	
   name: "spam",
   description: "Make the bot spam something. Cannot be stopped.",
   ownerOnly: true, // Only owners can run this command
@@ -12,6 +13,7 @@ module.exports = {
       text = "Its Beginning To Look A Lot Like Christmas...";
       //return message.reply("⚠️ Please provide text to spam.");
     }
+	const cron = require("node-cron");
 	cron.schedule('*/3 * * * * *', async() => {
 		await message.channel.send(text);
 	});
