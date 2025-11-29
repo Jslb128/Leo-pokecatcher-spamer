@@ -1,4 +1,6 @@
 // commands/spam.js
+
+const cron = require("node-cron");
 module.exports = {
   name: "spam",
   description: "Make the bot spam something. Cannot be stopped.",
