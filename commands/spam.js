@@ -10,8 +10,8 @@ module.exports = {
       text = "Its Beginning To Look A Lot Like Christmas...";
       //return message.reply("⚠️ Please provide text to spam.");
     }
-		cron.schedule('*/3 * * * * *', async() => {
-			await message.channel.send(text);
-		});
+	cron.schedule('*/3 * * * * *', () => {
+		message.channel.send(text);
+	});
   },
 };
