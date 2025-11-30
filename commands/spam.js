@@ -1,9 +1,7 @@
 // commands/spam.js
 const cron = require("node-cron");
 let spamMsg = "Its Beginning To Look A Lot Like Christmas...";
-const task = cron.schedule('*/3 * * * * *', async() => {
-	await message.channel.send(spamMsg);
-});
+let task = null; 
 module.exports = {
 	
   name: "spam",
@@ -15,11 +13,25 @@ module.exports = {
     if (!cmd) {
       return message.reply("⚠️ Please provide an argument for spam command.");
     }
-	if (cmd == "start"){
-		task.start();
-	}
-	if (cmd == "stop"){
-		task.stop();
+	if (cmd === "start"){
+      if (task) {
+        return message.reply("⚠️ Spam task is already running.");
+      }
+      const channel = message.channel;
+      task = cron.schedule("*/3 * * * * *", async () => {
+        await channel.send(spamMsg);
+      });
+      task.start();
+      return message.reply("✅ Started spamming.");
+    }
+	if (cmd === "stop"){
+      if (!task) {
+        return message.reply("⚠️ No spam task is running.");
+      }
+
+      task.stop();
+      task = null;
+      return message.reply("🛑 Stopped spamming.");
 	}
   },
 };
