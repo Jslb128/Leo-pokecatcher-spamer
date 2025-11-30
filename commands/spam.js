@@ -14,10 +14,10 @@ module.exports = {
     if (!cmd) {
       return message.reply("⚠️ Please provide an argument for spam command.");
     }
-	else if (cmd == "start"){
+	if (cmd == "start"){
 		task.start();
 	}
-	else if (cmd == "stop"){
+	if (cmd == "stop"){
 		task.stop();
 	}
   },
