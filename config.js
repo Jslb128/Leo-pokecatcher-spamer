@@ -20,7 +20,7 @@ module.exports = {
   retryDelay: 5000, // 5 seconds retry delay
   skipDuplicateWindow: 5 * 60 * 1000, // 5 minutes skip duplicate captcha
 
-  catchMode: "hint", // or "hint" / "lenda"
+  catchMode: "P2", // or "hint" / "lenda" / "P2"
   genderEmojis: {
     male: "♂️",
     female: "♀️",
