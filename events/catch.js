@@ -140,15 +140,16 @@ module.exports = (client) => {
         }
       }
     }
+	  
     // --- HINT MODE (Pokétwo) ---
     if (catchMode === "hint" && message?.author.id === "716390085896962058" || message?.author.id === "854233015475109888") {
       if (message.embeds[0]?.title?.includes("wild pokémon has appeared")) {  
 		setTimeout(if(message?.author.id === "854233015475109888" && message?.content.includes("%")){
 			//split message
 			const str = typeof message === 'object' ? message.content : message;
-			const words = str.split(" ");
+			const poke = str.split(":")[0];
 			//send pokemon
-			message.channel.send("<@716390085896962058> c " + words[0]);
+			message.channel.send("<@716390085896962058> c " + poke);
 		} else (){
 			setTimeout(function(){
 				message.channel.send("<@716390085896962058> h");
