@@ -151,7 +151,7 @@ module.exports = (client) => {
 			const poke = str.split(":")[0];
 			//send pokemon
 			message.channel.send("<@716390085896962058> c " + poke);
-		} else (){
+		} else{
 			setTimeout(function(){
 				message.channel.send("<@716390085896962058> h");
 			 }, 300);
