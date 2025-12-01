@@ -140,19 +140,22 @@ module.exports = (client) => {
         }
       }
     }
-	  
-    // --- HINT MODE (Pokétwo) ---
-    if (catchMode === "hint" && message?.author.id === "716390085896962058" || message?.author.id === "854233015475109888") {
+	// --- P2 ASSISTANT ----
+	if (catchMode === "P2" && message?.author.id === "854233015475109888") {
 		if(message?.author.id === "854233015475109888" && message?.content.includes("%")){
 			//split message
 			const str = typeof message === 'object' ? message.content : message;
 			const poke = str.split(":")[0];
 			//send pokemon
 			message.channel.send("<@716390085896962058> c " + poke);
-		}else if (message.embeds[0]?.title?.includes("wild pokémon has appeared")) {  
+		}
+	}
+    // --- HINT MODE (Pokétwo) ---
+    if (catchMode === "hint" && message?.author.id === "716390085896962058") {
+		if (message.embeds[0]?.title?.includes("wild pokémon has appeared")) {  
 			setTimeout(function(){
 				message.channel.send("<@716390085896962058> h");
-			 }, 300);
+			}, 300);
 
       } else if (message?.content.includes("The pokémon is")) {
         const pokemon = await solveHint(message);
