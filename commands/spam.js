@@ -1,8 +1,6 @@
 // commands/spam.js
-const cron = require("node-cron");
-
 let spamMsg = "Its Beginning To Look A Lot Like Christmas...";
-let tasks = new Map(); // Map<guildId, cronTask>
+let tasks = new Map(); // Map<guildId, intervalId>
 
 module.exports = {
   name: "spam",
@@ -14,29 +12,36 @@ module.exports = {
     const guildId = message.guild.id;
 
     if (!cmd) {
-      return message.reply("⚠️ Please provide an argument`.");
+      return message.reply("⚠️ Please provide an argument.");
     }
 
+    // START
     if (cmd === "start") {
       if (tasks.has(guildId)) {
         return message.reply("⚠️ Spam is already running in this server.");
       }
+
       const channel = message.channel;
-      const task = cron.schedule("*/3 * * * * *", async () => {
+
+      const intervalId = setInterval(async () => {
         await channel.send(spamMsg);
-      });
-      task.start();
-      tasks.set(guildId, task);
-      return message.reply("✅ Started spamming for this server.");
+      }, 3600); 
+
+      tasks.set(guildId, intervalId);
+
+      return message.reply("✅ Started spamming every **3.6 seconds**.");
     }
 
+    // STOP
     if (cmd === "stop") {
       if (!tasks.has(guildId)) {
         return message.reply("⚠️ No spam task is running for this server.");
       }
-      const task = tasks.get(guildId);
-      task.stop();
+
+      const intervalId = tasks.get(guildId);
+      clearInterval(intervalId);
       tasks.delete(guildId);
+
       return message.reply("🛑 Stopped spamming in this server.");
     }
   },
