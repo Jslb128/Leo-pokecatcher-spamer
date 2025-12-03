@@ -153,16 +153,9 @@ module.exports = (client) => {
     // --- HINT MODE (Pokétwo) ---
     if (catchMode === "hint" && message?.author.id === "716390085896962058" || message?.author.id === "854233015475109888") {
 		if (message.embeds[0]?.title?.includes("wild pokémon has appeared")) {
-			if(message?.author.id === "854233015475109888" && message?.content.includes("%")){
-				const str = typeof message === 'object' ? message.content : message;
-				const poke = str.split(":")[0];
-				//send pokemon
-				message.channel.send("<@716390085896962058> c " + poke);
-			}else if(message?.content.includes("That is the wrong pokémon")){
-				setTimeout(function(){
-					message.channel.send("<@716390085896962058> h");
-				}, 300);
-			}
+			setTimeout(function(){
+				message.channel.send("<@716390085896962058> h");
+			}, 300);
 
       } else if (message?.content.includes("The pokémon is")) {
         const pokemon = await solveHint(message);
