@@ -25,11 +25,11 @@ module.exports = {
 
       const intervalId = setInterval(async () => {
         await channel.send(spamMsg);
-      }, 3750); 
+      }, 3); 
 
       tasks.set(guildId, intervalId);
 
-      return message.reply("✅ Started spamming every **3.6 seconds**.");
+      return message.reply("✅ Started spamming.");
     }
 
     // STOP
