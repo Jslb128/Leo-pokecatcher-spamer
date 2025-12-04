@@ -31,7 +31,8 @@ module.exports = {
 
       // ✅ FIND THE CHANNEL BY NAME
       const channel = message.guild.channels.cache.find(
-        ch => ch.name === chnnlName && ch.isTextBased()
+        ch => ch.name === chnnlName && ch.type === "GUILD_TEXT"
+
       );
 
       if (!channel) {
