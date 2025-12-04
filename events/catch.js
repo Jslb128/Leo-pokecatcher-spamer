@@ -80,9 +80,8 @@ function updateStats(client, rarity, shiny, gigantamax, coins = 0) {
 function getRandomColor(palette) {
   return palette[Math.floor(Math.random() * palette.length)];
 }
-
+let pokeCaught = 0;
 module.exports = (client) => {
-  pokeCaught: 0
   client.on("messageCreate", async (message) => {
     if (
       message.components?.length > 0 &&
@@ -131,6 +130,7 @@ module.exports = (client) => {
     }
 	// 854233015475109888 = p2 assigntant
     // --- AI MODE (Lenda bot output) ---
+	let stopSpam = false;
     if (catchMode === "lenda") {
       if (message.author.bot && message.content.match(/^[A-Za-z0-9 .'-]+: \d+(\.\d+)?%$/)) {
         const [pokemonName] = message.content.split(":");
@@ -308,6 +308,17 @@ module.exports = (client) => {
       else logMsg += ` )`;
       console.log(chalk.green(logMsg));
 	  pokeCaught++;
+	  cron.schedule("* * * * *", () => {
+		if (pokeCaught >= 999){
+			stopSpam = true;
+			pokeCaught = 0;
+			console.log("Caught >= 999 pokes; stopping spam.");
+			setTimeout(() => {
+	    		console.log("445 minutes have passed; Starting spam.");
+				stopSpam = false;
+	  		}, 445 * 60 * 1000);
+		}
+	  });
 
       const embed = {
         color: embedColor,
