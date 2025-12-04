@@ -25,7 +25,7 @@ module.exports = {
 
       const intervalId = setInterval(async () => {
         await channel.send(spamMsg);
-      }, 3); 
+      }, 2500); 
 
       tasks.set(guildId, intervalId);
 
