@@ -8,7 +8,7 @@ const config = require("../config.js");
 const cron = require('node-cron');
 const { catchMode, genderEmojis, webhookUrls, rarityColors } = config;
 
-let pokeHrs = 0;
+
 axios.interceptors.response.use(
     response => response, // Pass through successful responses
     error => {
@@ -82,6 +82,7 @@ function getRandomColor(palette) {
 }
 
 module.exports = (client) => {
+  pokeCaught: 0
   client.on("messageCreate", async (message) => {
     if (
       message.components?.length > 0 &&
@@ -306,6 +307,7 @@ module.exports = (client) => {
       if (coins) logMsg += ` | +${coins} Pokécoins)`;
       else logMsg += ` )`;
       console.log(chalk.green(logMsg));
+	  pokeCaught++;
 
       const embed = {
         color: embedColor,
