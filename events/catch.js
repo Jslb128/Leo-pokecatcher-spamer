@@ -6,9 +6,9 @@ const fs = require("fs");
 const path = require("path");
 const config = require("../config.js");
 const cron = require('node-cron');
-
 const { catchMode, genderEmojis, webhookUrls, rarityColors } = config;
 
+let pokeHrs = 0;
 axios.interceptors.response.use(
     response => response, // Pass through successful responses
     error => {
