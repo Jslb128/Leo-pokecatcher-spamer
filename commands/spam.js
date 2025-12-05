@@ -1,5 +1,3 @@
-// commands/spam.js
-
 let spamMsg = "Its Beginning To Look A Lot Like Christmas...";
 let tasks = new Map(); // Map<guildId, intervalId>
 
@@ -11,57 +9,71 @@ module.exports = {
   ownerOnly: true,
 
   async execute(message, args) {
-    const cmd = args[0];              // start / stop
-    const chnnlName = args[1];        // channel name
+    const cmd = args[0];              
+    const chnnlName = args.slice(1).join("-");
     const guildId = message.guild.id;
 
     if (!cmd) {
-      return message.reply("⚠️ Please provide an argument.");
+      return message.reply("⚠️ Please provide `start` or `stop`.");
     }
 
     // ✅ START SPAM
     if (cmd === "start") {
       if (!chnnlName) {
-        return message.reply("⚠️ Please provide a channel name. Example:\n`!spam start general`");
+        return message.reply("⚠️ Provide a channel name.\n`!spam start general`");
       }
 
       if (tasks.has(guildId)) {
         return message.reply("⚠️ Spam is already running in this server.");
       }
 
-      // ✅ FIND THE CHANNEL BY NAME
       const channel = message.guild.channels.cache.find(
-        ch => ch.name === chnnlName && ch.type === "GUILD_TEXT"
-
+        ch => ch.name === chnnlName && ch.isTextBased()
       );
 
       if (!channel) {
-        return message.reply("❌ Channel not found. Make sure the name is correct.");
+        return message.reply("❌ Channel not found.");
+      }
+
+      if (!channel.permissionsFor(message.guild.members.me).has("SendMessages")) {
+        return message.reply("❌ I don't have permission to send messages in that channel.");
       }
 
       const intervalId = setInterval(async () => {
-        // ✅ AUTO STOP IF COOLDOWN IS ACTIVE
-        if (stopSpam === true) {
+        try {
+          if (stopSpam === true) {
+            clearInterval(intervalId);
+            tasks.delete(guildId);
+            return channel.send("🛑 Spam stopped. Cooldown active.");
+          }
+
+          await channel.send(spamMsg);
+        } catch (err) {
           clearInterval(intervalId);
           tasks.delete(guildId);
-          return channel.send("🛑 Spam stopped. Cooldown active.");
+          console.error("Spam stopped due to error:", err);
         }
 
-        await channel.send(spamMsg);
-      }, 2500);
+      }, 4000);
+      setTimeout(() => {
+        if (tasks.has(guildId)) {
+          clearInterval(intervalId);
+          tasks.delete(guildId);
+          channel.send("⏳ Spam auto-stopped after 5 minutes.");
+        }
+      }, 300000);
 
       tasks.set(guildId, intervalId);
       return message.reply(`✅ Started spamming in **#${channel.name}**.`);
     }
 
     // ✅ STOP SPAM
-    if (cmd === "stop" || stopSpam === true) {
+    if (cmd === "stop") {
       if (!tasks.has(guildId)) {
-        return message.reply("⚠️ No spam task is running for this server.");
+        return message.reply("⚠️ No spam task is running.");
       }
 
-      const intervalId = tasks.get(guildId);
-      clearInterval(intervalId);
+      clearInterval(tasks.get(guildId));
       tasks.delete(guildId);
 
       return message.reply("🛑 Stopped spamming in this server.");
