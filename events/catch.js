@@ -309,18 +309,6 @@ module.exports = (client) => {
       if (coins) logMsg += ` | +${coins} Pokécoins)`;
       else logMsg += ` )`;
       console.log(chalk.green(logMsg));
-	  pokeCaught++;
-	  cron.schedule("* * * * *", () => {
-		if (pokeCaught >= 999){
-			stopSpam = true;
-			pokeCaught = 0;
-			console.log("Caught >= 999 pokes; stopping spam.");
-			setTimeout(() => {
-	    		console.log("445 minutes have passed; Starting spam.");
-				stopSpam = false;
-	  		}, 445 * 60 * 1000);
-		}
-	  });
 
       const embed = {
         color: embedColor,
