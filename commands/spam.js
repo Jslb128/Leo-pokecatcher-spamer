@@ -40,12 +40,6 @@ module.exports = {
       }
 
       const intervalId = setInterval(async () => {
-        // ✅ AUTO STOP IF COOLDOWN IS ACTIVE
-        if (stopSpam === true) {
-          clearInterval(intervalId);
-          tasks.delete(guildId);
-          return channel.send("🛑 Spam stopped. Cooldown active.");
-        }
 
         await channel.send(spamMsg);
       }, 2500);
