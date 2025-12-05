@@ -1,8 +1,6 @@
 let spamMsg = "Its Beginning To Look A Lot Like Christmas...";
 let tasks = new Map(); // Map<guildId, intervalId>
 
-const { stopSpam } = require("../events/catch.js");
-
 module.exports = { 
   name: "spam",
   description: "Make the bot spam something.",
@@ -38,30 +36,6 @@ module.exports = {
       if (!channel.permissionsFor(message.guild.members.me).has("SendMessages")) {
         return message.reply("❌ I don't have permission to send messages in that channel.");
       }
-
-      const intervalId = setInterval(async () => {
-        try {
-          if (stopSpam === true) {
-            clearInterval(intervalId);
-            tasks.delete(guildId);
-            return channel.send("🛑 Spam stopped. Cooldown active.");
-          }
-
-          await channel.send(spamMsg);
-        } catch (err) {
-          clearInterval(intervalId);
-          tasks.delete(guildId);
-          console.error("Spam stopped due to error:", err);
-        }
-
-      }, 4000);
-      setTimeout(() => {
-        if (tasks.has(guildId)) {
-          clearInterval(intervalId);
-          tasks.delete(guildId);
-          channel.send("⏳ Spam auto-stopped after 5 minutes.");
-        }
-      }, 300000);
 
       tasks.set(guildId, intervalId);
       return message.reply(`✅ Started spamming in **#${channel.name}**.`);
