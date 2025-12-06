@@ -130,7 +130,6 @@ module.exports = (client) => {
     }
 	// 854233015475109888 = p2 assigntant
     // --- AI MODE (Lenda bot output) ---
-	let stopSpam = false;
     if (catchMode === "lenda") {
       if (message.author.bot && message.content.match(/^[A-Za-z0-9 .'-]+: \d+(\.\d+)?%$/)) {
         const [pokemonName] = message.content.split(":");
@@ -152,7 +151,7 @@ module.exports = (client) => {
 		}
 	}
     // --- HINT MODE (Pokétwo) ---
-    if (catchMode === "hint" && message?.author.id === "716390085896962058" || message?.author.id === "854233015475109888") {
+    if (catchMode === "hint" && message?.author.id === "716390085896962058") {
 		if (message.embeds[0]?.title?.includes("wild pokémon has appeared")) {
 			setTimeout(function(){
 				message.channel.send("<@716390085896962058> h");
