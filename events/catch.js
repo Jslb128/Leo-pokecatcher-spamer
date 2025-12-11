@@ -124,9 +124,9 @@ module.exports = (client) => {
 	//let waiting = false;
     if (client.captchaPaused //&& waiting === false) {
 		//waiting = true;
-      console.log(
-        `[${date.format(new Date(), "YYYY-MM-DD HH:mm:ss")}] Catch paused due to captcha for ${client.user.username}`,
-      );
+      //console.log(
+        //`[${date.format(new Date(), "YYYY-MM-DD HH:mm:ss")}] Catch paused due to captcha for ${client.user.username}`,
+      //);
 		//waiting = false;
       return;
     }
