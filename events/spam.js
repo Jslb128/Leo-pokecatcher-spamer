@@ -6,7 +6,7 @@ module.exports = (client) => {
   const chnnlName = "spam";
 
   client.on("ready", async () => {
-    if (client.captchaPaused = true){
+    if (client.captchaPaused = false){
       for (const [guildId, guild] of client.guilds.cache) {
         try {
           const channel = guild.channels.cache.find(
